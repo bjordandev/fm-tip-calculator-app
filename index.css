@@ -7,3 +7,9 @@
     --c-neutral-very-light-grayish-cyan: hsl(189, 41%, 97%);
     --c-neutral-white: hsl(0, 0%, 100%);
 }
+
+body {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700; 
+    font-size: 24px;
+}
