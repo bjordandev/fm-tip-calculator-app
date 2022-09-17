@@ -15,8 +15,30 @@ body {
     background-color: var(--c-neutral-light-grayish-cyan);
 }
 
-@media screen and (min-width: 925px) {
 
+.splitter {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:46px;
+    width: 100%; 
+    max-width:920px;
+}
+
+.splitter__logo {
+    margin-bottom:36px;
+}
+
+
+@media screen and (min-width: 925px) {
+    .splitter {
+        margin: 0 auto;
+        margin-top:160px;
+    }
+
+    .splitter__logo {
+        margin-bottom:80px;
+    }
 }
 
 @media (prefers-reduced-motion: no-preference) {
