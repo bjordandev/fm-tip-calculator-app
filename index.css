@@ -13,3 +13,11 @@ body {
     font-weight: 700; 
     font-size: 24px;
 }
+
+@media screen and (min-width: 925px) {
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+        
+}
