@@ -17,18 +17,16 @@ body {
 
 
 .splitter {
-    display:flex;
-    align-items: center;
-    justify-content: center;
     margin-top:46px;
     width: 100%; 
     max-width:920px;
 }
 
 .splitter__logo {
-    margin-bottom:36px;
+    display:block;
+    margin: 0 auto;
+    margin-bottom:36px; 
 }
-
 
 @media screen and (min-width: 925px) {
     .splitter {
