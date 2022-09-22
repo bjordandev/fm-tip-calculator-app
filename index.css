@@ -141,18 +141,6 @@ body {
 }
 
 /* RADIO GROUP COMPONENT */
-.radioGroup {
-    position:relative;
-}
-
-.radioGroup__input, 
-.radioGroup__label
-{
-   position:absolute;
-   top:0;
-   left:0;
-}
-
 .radioGroup__input {
     display:none;
 }
@@ -165,6 +153,7 @@ body {
     color: var(--c-neutral-white);
     font-size:20px;
     border-radius: 6px;
+    height:100%;
 }
 
 .radioGroup__label:is(:hover, :focus) {
@@ -175,6 +164,20 @@ body {
 .radioGroup__input:checked + .radioGroup__label   {
     background-color: var(--c-primary-strong-cyan);
     color: var(--c-neutral-very-dark-grayish-cyan);
+}
+
+/* GRID RADIO */
+.splitter__gridRadio {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.0625rem;
+}
+
+.splitter__gridRadioChild {
+    flex-basis: 148px;
+    flex-grow: 1;
+    height:52px;
 }
 
 @media screen and (min-width: 925px) {
@@ -198,6 +201,11 @@ body {
 
     .splitter__formGroup {
         margin-bottom: 43px;
+    }
+
+    .splitter__gridRadioChild {
+        flex-basis: 7.125rem;
+        flex-grow: 1;
     }
 }
 
