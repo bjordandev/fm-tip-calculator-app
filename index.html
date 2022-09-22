@@ -13,6 +13,33 @@
     <title>Tip Calculator App</title>
 </head>
 <body>
+    <main class="splitter">
+        <img src="images/logo.svg" alt="splitter logo" class="splitter__logo">
+        <figure class="splitter__calculator">
+            <form class="splitter__form" action="javascript:void(0);">
+                <div class="splitter__formGroup formGroup formGroup--dollar">
+                    <label class="splitter__label label" for="bill">bill</label>
+                    <input type="number"
+                           inputmode="decimal"
+                           min="0"
+                           step="0.01"
+                           class="input splitter__billInput" 
+                           id="bill" 
+                           placeholder="0">
+                    <span class="splitter__error error">must be positive</span>
+                </div>
+                <div class="splitter__formGroup">
+                    <label class="splitter__label label" for="bill">Select Tip %</label>
+                    <div class="splitter__gridRadio">
+                        <div class="radioGroup splitter__gridRadioChild">
+                            <input class="radioGroup__input" type="radio" id="5%" name="percentage">
+                            <label class="radioGroup__label" for="5%">5%</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </figure>
+    </main>
     <script src="index.js"></script>
 </body>
 </html>
