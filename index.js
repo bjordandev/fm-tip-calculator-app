@@ -76,7 +76,7 @@ class NumberInput extends Input {
     
         if (isRangeValid) {
             this.value = number;
-            for (let text of texts) {
+            for (let text of texts.values()) {
                 if (text.update) {
                     text.update(this.value);
                 }
@@ -85,10 +85,79 @@ class NumberInput extends Input {
     }
 }
 
+/***
+ *  Doit prendre uniquement des radios buttons
+ *  Choix entre un string ou un nombre numerique
+ *  
+ * 
+ */
+
+class RadioGroupNumber {
+    constructor(elements) {
+        if (!elements) throw new Error("RadioGroupNumber: No elements provided");
+
+        for (let element of elements) {
+            const isInput = element.tagName.toLowerCase() === "input";
+            const isRadio = element.getAttribute("type") === "radio";
+
+            if (!isInput) throw new Error("RadioGroupNumber: Element provided isn't input");
+            if (!isRadio) throw new Error("RadioGroupNumber: Input provided isn't radio");
+
+            element.addEventListener("input", this.notify.bind(this));
+        }
+
+        this.elements = elements;
+        this.texts = new Map();
+        this.value = 0;
+    }
+
+    addText(name, text) {
+        const texts = this.texts;
+        const hasText = this.texts.has(name);
+
+        if (hasText) throw new Error(`Input: ${name} text already defined`);
+
+        texts.set(name, text);
+    }
+
+    removeText(name) {
+        const texts = this.texts; 
+        const hasText = this.texts.has(name);
+
+        if (!hasText) throw new Error(`Input: ${name} text doesn't exist`);
+
+        texts.delete(name);
+    }
+
+    notify(event) {
+        const value = event?.target?.value;
+        const texts = this.texts;
+        let number = 0;
+
+        if (value === "") {
+            this.value = undefined;
+            return;
+        }
+
+        number = Number.parseInt(value, 10);
+
+        this.value = number;
+
+        console.log(this.value);
+        
+        for (let text of texts.values()) {
+            if (text.update) {
+                    text.update(this.value);
+            }
+        }
+    }
+}
+
+
 const billInput = new NumberInput(document.querySelector(".js--billInput"));
 const peopleInput = new NumberInput(document.querySelector(".js--peopleInput"));
 const tipInput = new NumberInput(document.querySelector(".js--tipInput"));
-
+const radioGroupTip = new RadioGroupNumber(document.querySelectorAll(".js--radioInput"));
 
 
 
