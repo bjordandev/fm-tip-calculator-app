@@ -53,6 +53,10 @@ body {
     content: url("./images/icon-dollar.svg");
 }
 
+.formGroup--people::before {
+    content: url("./images/icon-person.svg");
+}
+
 
 .splitter__label {
     margin-bottom: 10px;
@@ -66,6 +70,12 @@ body {
 
 .splitter__billInput {
     position:relative;
+}
+
+.splitter__result {
+    border-radius:12px;
+    padding: 43px 23px; 
+    background-color:var(--c-neutral-very-dark-cyan);
 }
 
 /* COMPONENTS */
@@ -183,7 +193,7 @@ body {
 
 .radioGroup__label:is(:hover, :focus) {
     background-color: var(--c-hover-strong-cyan);
-    color: var(--c-neutral-very-dark-grayish-cyan);
+    color: var(--c-neutral-very-dark-cyan);
 }
 
 .radioGroup__input:checked + .radioGroup__label   {
@@ -205,10 +215,87 @@ body {
     height:52px;
 }
 
+.splitter__price {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.splitter__price:not(:last-child) {
+    margin-bottom:30px;
+}
+
+.splitter__priceLabelTitle {
+    font-size: 16px;
+    margin-bottom:8px;
+    text-transform: capitalize;
+    color: var(--c-neutral-white);
+}
+
+.splitter__priceLabelPer {
+    display:block;
+    font-size: 13px;
+    color: var(--c-neutral-dark-grayish-cyan);
+}
+
+.splitter__priceLabelPer::before {
+    content: "/ ";
+}
+
+.splitter__priceNumber { 
+    font-size:22px; 
+    text-transform:capitalize;
+    color:var(--c-primary-strong-cyan);
+}
+
+.splitter__priceNumber::before { 
+    content:"$";
+}
+
+.splitter__button {
+    font-size:16px;
+    text-transform:uppercase;
+    position:relative;
+    display:flex; 
+    align-items: center;
+    justify-content: center;
+    z-index:1;
+    background-color: var(--c-primary-strong-cyan);
+    border-radius:6px;
+    height:47px;
+    margin-top:30px;
+}
+
+.splitter__button::before {
+    background-color: var(--c-hover-strong-cyan);
+    border-radius: inherit;
+    z-index: -1;
+    position:absolute;
+    content:"";
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    opacity:0;
+}
+
+.splitter__button:hover::before {
+    opacity: 1;
+}
+
 @media screen and (min-width: 925px) {
     .splitter {
         margin: 0 auto;
         margin-top:160px;
+    }
+
+    .splitter__form {
+       flex-basis: 384px;
+    }
+
+    .splitter__result {
+        flex-basis:415px;
+        height:416px;
     }
 
     .splitter__logo {
@@ -231,6 +318,25 @@ body {
     .splitter__gridRadioChild {
         flex-basis: 7.125rem;
         flex-grow: 1;
+    }
+
+    .splitter__result {
+        display:flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 58px 38px; 
+    }
+    
+    .splitter__priceLabelPer::before {
+        content: "/ ";
+    }
+    
+    .splitter__priceNumber { 
+        font-size:55px; 
+    }
+    
+    .splitter__priceNumber::before { 
+        content:"$";
     }
 }
 
