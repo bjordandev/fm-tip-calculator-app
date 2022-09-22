@@ -144,7 +144,7 @@ class RadioGroupNumber {
         this.value = number;
 
         console.log(this.value);
-        
+
         for (let text of texts.values()) {
             if (text.update) {
                     text.update(this.value);
@@ -153,11 +153,46 @@ class RadioGroupNumber {
     }
 }
 
+class Text {
+    constructor(element) {
+        if (!element) throw new Error("Text: Element provided doesn't exist");
+
+        this.element = element;
+        this.inputs = new Map();
+    }
+
+    addInput(name, input) {
+        const inputs = this.inputs;
+        const hasInput = this.inputs.has(name);
+
+        if (hasInput) throw new Error(`Text: ${name} input already defined`);
+
+        inputs.set(name, text);
+    }
+
+    removeText(name) {
+        const inputs = this.inputs; 
+        const hasInput = this.inputs.has(name);
+
+        if (!hasInput) throw new Error(`Input: ${name} input doesn't exist`);
+
+        inputs.delete(name);
+    }
+
+    update(newValue) {
+        console.log(newValue);
+    }
+}
 
 const billInput = new NumberInput(document.querySelector(".js--billInput"));
 const peopleInput = new NumberInput(document.querySelector(".js--peopleInput"));
 const tipInput = new NumberInput(document.querySelector(".js--tipInput"));
 const radioGroupTip = new RadioGroupNumber(document.querySelectorAll(".js--radioInput"));
+
+const tipAmountText = new Text(document.querySelector(".js--tip"));
+
+billInput.addText("tipAmount", tipAmountText);
+peopleInput.addText("tipAmount", tipAmountText);
 
 
 
