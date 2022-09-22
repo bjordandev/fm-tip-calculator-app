@@ -85,13 +85,6 @@ class NumberInput extends Input {
     }
 }
 
-/***
- *  Doit prendre uniquement des radios buttons
- *  Choix entre un string ou un nombre numerique
- *  
- * 
- */
-
 class RadioGroupNumber {
     constructor(elements) {
         if (!elements) throw new Error("RadioGroupNumber: No elements provided");
@@ -143,11 +136,9 @@ class RadioGroupNumber {
 
         this.value = number;
 
-        console.log(this.value);
-
         for (let text of texts.values()) {
             if (text.update) {
-                    text.update(this.value);
+                text.update(this.value);
             }
         }
     }
