@@ -122,11 +122,12 @@ body {
 /* ERROR COMPONENT */
 
 .error {
+    position:absolute;
     display:inline-block;
     color: red;
     font-weight: 100;
     font-size:0.875rem;
-    opacity:0;
+    opacity:1;
     max-width:600px;
 }
 
@@ -138,6 +139,30 @@ body {
 .input:invalid + .error 
 {
     opacity:1;
+}
+
+.error--topLeft {
+    top:0;
+    left:0;
+    transform:translateY(calc(-100% - 5px));
+}
+
+.error--topRight {
+    top:0;
+    left:0;
+    transform:translateY(calc(-100% - 5px));
+}
+
+.error--bottomLeft {
+    bottom:0;
+    left:0;
+    transform:translateY(calc(100% + 5px));
+}
+
+.error--bottomRight {
+    bottom:0;
+    right:0;
+    transform:translateY(calc(100% + 5px));
 }
 
 /* RADIO GROUP COMPONENT */
