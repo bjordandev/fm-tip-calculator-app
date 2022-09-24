@@ -226,6 +226,31 @@ class Text {
     }
 }
 
+class Button {
+    constructor(element, clickCallback=undefined) {
+        const elementExist = element !== false;
+
+        const isButton = element?.tagName?.toLowerCase() === "button";
+
+        if (!elementExist) throw new Error("Input: null button provided");
+        if (!isButton) throw new Error("Input: no button element provided");
+
+        this.element = element; 
+        this.clickCallback = clickCallback;
+
+        element.addEventListener("click", this.handleClick.bind(this));
+    }
+
+    handleClick(event) {
+        console.log("toto");
+        const clickCallback = this.clickCallback;
+
+        if (clickCallback) {
+            clickCallback(this, event);
+        }
+    }
+}
+
 const billInput = new NumberInput(document.querySelector(".js--billInput"));
 const peopleInput = new NumberInput(document.querySelector(".js--peopleInput"));
 const tipInput = new NumberInput(document.querySelector(".js--tipInput"));
@@ -280,6 +305,15 @@ totalText.addInput("bill", billInput);
 totalText.addInput("radioTip", radioGroupTipInput);
 totalText.addInput("people", peopleInput);
 totalText.addInput("customTip", tipInput);
+
+const resetButton = new Button(document.querySelector(".js--reset"), (context, event) => {
+    event.preventDefault();
+
+    billInput.setValue(0);
+    peopleInput.setValue(1);
+    tipInput.setValue(1);
+    radioGroupTipInput.setValue("5%");
+})
 
 
 
