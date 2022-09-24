@@ -345,5 +345,19 @@ body {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    
+    .splitter__button::before {
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .radioGroup__label {
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .radioGroup__label {
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .input {
+        transition: border-color 0.2s ease-in-out;
+    }
 }
