@@ -306,6 +306,9 @@ const resetButton = new Button(document.querySelector(".js--reset"), (context, e
     peopleInput.setValue(1);
     tipInput.setValue(1);
     radioGroupTipInput.setValue("5%");
+
+    tipAmountText.update(0.00);
+    totalText.update(0.00);
 })
 
 
