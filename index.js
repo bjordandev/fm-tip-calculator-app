@@ -97,13 +97,13 @@ class NumberInput extends Input {
     }
 
     setValue(newValue) {
-        this.element.setAttribute("value", newValue);
+        this.element.value = newValue;
         this.value = newValue;
     }
 }
 
 class RadioGroupNumber {
-    constructor(elements) {
+    constructor(elements, setCallback=undefined) {
         if (!elements) throw new Error("RadioGroupNumber: No elements provided");
 
         this.value = 0;
@@ -126,6 +126,7 @@ class RadioGroupNumber {
 
         this.elements = elements;
         this.texts = new Map();
+        this.setCallback = setCallback;
     }
 
     addText(name, text) {
@@ -147,6 +148,7 @@ class RadioGroupNumber {
     }
 
     notify(event) {
+        const setCallback = this.setCallback;
         const value = event?.target?.value;
         const texts = this.texts;
         let number = 0;
@@ -165,6 +167,8 @@ class RadioGroupNumber {
                 text.update(this.value);
             }
         }
+
+        setCallback && setCallback(this);
     }
 
     getValue() {
@@ -179,7 +183,7 @@ class RadioGroupNumber {
         const findedElement = elements.find(element => element.getAttribute("id") === newValue);
         
         findedElement.checked = true; 
-
+        
         this.value = findedElement.value;
     }
 }
@@ -253,7 +257,9 @@ class Button {
 const billInput = new NumberInput(document.querySelector(".js--billInput"));
 const peopleInput = new NumberInput(document.querySelector(".js--peopleInput"));
 const tipInput = new NumberInput(document.querySelector(".js--tipInput"));
-const radioGroupTipInput = new RadioGroupNumber(document.querySelectorAll(".js--radioInput"));
+const radioGroupTipInput = new RadioGroupNumber(document.querySelectorAll(".js--radioInput"), (context) => {
+    tipInput.setValue(0);
+});
 
 const tipAmountText = new Text(document.querySelector(".js--tip"), (newValue, context) => {
     const billValue = context.inputs.get("bill").value || 0;
