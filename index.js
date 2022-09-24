@@ -41,7 +41,7 @@ class Input {
 }
 
 class NumberInput extends Input {
-    constructor(element) {
+    constructor(element, defaultValue=0) {
        super(element);
 
        if (element.getAttribute("inputmode") === "numeric") {
@@ -52,7 +52,7 @@ class NumberInput extends Input {
             throw new Error("NumberInput: Invalid type");
        }
 
-       this.value = 0;
+       this.value = defaultValue;
        this.min = element.getAttribute("min") ? Number.parseInt(element.getAttribute("min"), 10) : 0;
        this.max = element.getAttribute("max") ? Number.parseInt(element.getAttribute("max"), 10) : Number.MAX_SAFE_INTEGER;
     }
@@ -93,6 +93,8 @@ class RadioGroupNumber {
     constructor(elements) {
         if (!elements) throw new Error("RadioGroupNumber: No elements provided");
 
+        this.value = 0;
+
         for (let element of elements) {
             const isInput = element.tagName.toLowerCase() === "input";
             const isRadio = element.getAttribute("type") === "radio";
@@ -100,12 +102,17 @@ class RadioGroupNumber {
             if (!isInput) throw new Error("RadioGroupNumber: Element provided isn't input");
             if (!isRadio) throw new Error("RadioGroupNumber: Input provided isn't radio");
 
+            const isChecked = element.checked;
+            
+            if (isChecked) {
+                this.value = isChecked && Number.parseInt(element.getAttribute("value"), 10);
+            } 
+            
             element.addEventListener("input", this.notify.bind(this));
         }
 
         this.elements = elements;
         this.texts = new Map();
-        this.value = 0;
     }
 
     addText(name, text) {
@@ -204,10 +211,10 @@ const tipAmountText = new Text(document.querySelector(".js--tip"), (newValue, co
     if (numberOfPeople <= 0) return Number.parseInt(context.element.textContent, 10);
 
     const tipPercentage = !customTipValue ? radioTipValue : customTipValue;
-    const percentageOfBill = billValue * tipPercentage / 100;
-    const percentageOfBillPerPeople = percentageOfBill / numberOfPeople; 
+    const tipAmount = billValue * tipPercentage / 100;
+    const tipAmountPerPerson = tipAmount / numberOfPeople; 
     
-    return percentageOfBillPerPeople;
+    return tipAmountPerPerson;
 });
 
 const totalText = new Text(document.querySelector(".js--total"), (newValue, context) => {
@@ -219,10 +226,10 @@ const totalText = new Text(document.querySelector(".js--total"), (newValue, cont
     if (numberOfPeople <= 0) return Number.parseInt(context.element.textContent, 10);
 
     const tipPercentage = !customTipValue ? radioTipValue : customTipValue;
-    const billWithPercentage = billValue * (1 + tipPercentage / 100);
-    const percentageOfBillWithPercentage = billWithPercentage / numberOfPeople; 
+    const total = billValue * (1 + tipPercentage / 100);
+    const totalPerPerson = total / numberOfPeople; 
     
-    return percentageOfBillWithPercentage;
+    return totalPerPerson;
 });
 
 billInput.addText("tipAmount", tipAmountText);
@@ -233,7 +240,7 @@ tipInput.addText("tipAmount", tipAmountText);
 billInput.addText("total", totalText);
 peopleInput.addText("total", totalText);
 radioGroupTipInput.addText("total", totalText);
-tipInput.addText("total", tipAmountText);
+tipInput.addText("total", totalText);
 
 tipAmountText.addInput("bill", billInput);
 tipAmountText.addInput("radioTip", radioGroupTipInput);
