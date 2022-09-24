@@ -284,6 +284,10 @@ body {
 }
 
 @media screen and (min-width: 925px) {
+    body {
+        overflow-y: hidden;
+    }
+
     .splitter {
         margin: 0 auto;
         margin-top:160px;
