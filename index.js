@@ -38,6 +38,10 @@ class Input {
     getValue() {
         return undefined;
     }
+
+    setValue() {
+        console.log("To define");
+    }
 }
 
 class NumberInput extends Input {
@@ -86,6 +90,15 @@ class NumberInput extends Input {
                 }
             }
         }
+    }
+
+    getValue() {
+        return this.value;
+    }
+
+    setValue(newValue) {
+        this.element.setAttribute("value", newValue);
+        this.value = newValue;
     }
 }
 
@@ -152,6 +165,22 @@ class RadioGroupNumber {
                 text.update(this.value);
             }
         }
+    }
+
+    getValue() {
+        return this.value;
+    }
+
+    setValue(newValue) {
+        const elements = this.elements;
+
+        elements.map(element => element.setAttribute("checked", false));
+
+        const findedElement = elements.find(element => element.name === newValue);
+        
+        findedElement.setAttribute("checked", true);
+        
+        return findedElement.value;
     }
 }
 
