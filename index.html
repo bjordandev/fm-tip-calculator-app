@@ -32,23 +32,23 @@
                     <label class="splitter__label label" for="bill">Select Tip %</label>
                     <div class="splitter__gridRadio">
                         <div class="radioGroup splitter__gridRadioChild">
-                            <input class="js--radioInput radioGroup__input" type="radio" id="5%" name="percentage">
+                            <input class="js--radioInput radioGroup__input" type="radio" id="5%" value="5" name="percentage">
                             <label class="radioGroup__label" for="5%">5%</label>
                         </div>
                         <div class="radioGroup splitter__gridRadioChild">
-                            <input class="js--radioInput radioGroup__input" type="radio" id="10%" name="percentage">
+                            <input class="js--radioInput radioGroup__input" type="radio" id="10%" value="10" name="percentage">
                             <label class="radioGroup__label" for="10%">10%</label>
                         </div>
                         <div class="radioGroup splitter__gridRadioChild">
-                            <input class="js--radioInput radioGroup__input" type="radio" id="15%" name="percentage">
+                            <input class="js--radioInput radioGroup__input" type="radio" id="15%" value="15" name="percentage">
                             <label class="radioGroup__label" for="15%">15%</label>
                         </div>
                         <div class="radioGroup splitter__gridRadioChild">
-                            <input class="js--radioInput radioGroup__input" type="radio" id="25%" name="percentage">
+                            <input class="js--radioInput radioGroup__input" type="radio" id="25%" value="25" name="percentage">
                             <label class="radioGroup__label" for="25%">25%</label>
                         </div>
                         <div class="radioGroup splitter__gridRadioChild">
-                            <input class="js--radioInput radioGroup__input" type="radio" id="50%" name="percentage">
+                            <input class="js--radioInput radioGroup__input" type="radio" id="50%" value="50" name="percentage">
                             <label class="radioGroup__label" for="50%">50%</label>
                         </div>
                         <div class="formGroup splitter__gridRadioChild">
@@ -66,8 +66,8 @@
                     <label class="splitter__label label" for="people">Number of People</label>
                     <input type="number"
                            inputmode="numeric"
-                           min="0"
-                           class="input splitter__peopleInput" 
+                           min="1"
+                           class="js--peopleInput input splitter__peopleInput" 
                            id="people" 
                            placeholder="0">
                     <span class="splitter__error error">must be positive</span>
@@ -80,14 +80,14 @@
                             <h3 class="splitter__priceLabelTitle">Tip Amount</h3>
                             <h4 class="splitter__priceLabelPer">person</h4>
                         </div>
-                        <span id="js--tip" class="splitter__priceNumber">0.00</span>
+                        <span class="js--tip splitter__priceNumber">0.00</span>
                     </div>
                     <div class="splitter__price">
                         <div class="splitter__priceLabel">
                             <h3 class="splitter__priceLabelTitle">Total</h3>
                             <h4 class="splitter__priceLabelPer">person</h4>
                         </div>
-                        <span id="js--price" class="splitter__priceNumber">0.00</span>
+                        <span class="js--total splitter__priceNumber">0.00</span>
                     </div>
                 </div>
                 <div>
