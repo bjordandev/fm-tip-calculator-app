@@ -33,7 +33,7 @@ body {
     padding: 40px 30px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    height:100vh;
+    height:100%;
 }
 
 .splitter__form {
@@ -191,7 +191,9 @@ body {
     height:100%;
 }
 
-.radioGroup__label:is(:hover, :focus) {
+.radioGroup__label:hover, 
+.radioGroup__input:focus + .radioGroup__label
+{
     background-color: var(--c-hover-strong-cyan);
     color: var(--c-neutral-very-dark-cyan);
 }
@@ -279,11 +281,11 @@ body {
     opacity:0;
 }
 
-.splitter__button:hover::before {
+.splitter__button:is(:hover, :focus)::before {
     opacity: 1;
 }
 
-@media screen and (min-width: 925px) {
+@media screen and (min-width:768px) {
     body {
         overflow-y: hidden;
     }
@@ -292,7 +294,9 @@ body {
         margin: 0 auto;
         margin-top:160px;
     }
+}
 
+@media screen and (min-width: 925px) {
     .splitter__form {
        flex-basis: 384px;
     }
@@ -309,7 +313,6 @@ body {
     .splitter__calculator {
         padding: 50px 40px;
         border-radius: 20px;
-        height:auto;
         display:flex;
         align-items: center;
         justify-content: space-between;

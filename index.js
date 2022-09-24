@@ -35,10 +35,6 @@ class Input {
         console.log("To implement");        
     }
 
-    getValue() {
-        return undefined;
-    }
-
     setValue() {
         console.log("To define");
     }
@@ -90,10 +86,6 @@ class NumberInput extends Input {
                 }
             }
         }
-    }
-
-    getValue() {
-        return this.value;
     }
 
     setValue(newValue) {
@@ -169,10 +161,6 @@ class RadioGroupNumber {
         }
 
         setCallback && setCallback(this);
-    }
-
-    getValue() {
-        return this.value;
     }
 
     setValue(newValue) {
