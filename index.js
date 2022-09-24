@@ -172,15 +172,15 @@ class RadioGroupNumber {
     }
 
     setValue(newValue) {
-        const elements = this.elements;
+        const elements = [...this.elements];
 
         elements.map(element => element.setAttribute("checked", false));
 
-        const findedElement = elements.find(element => element.name === newValue);
+        const findedElement = elements.find(element => element.getAttribute("id") === newValue);
         
-        findedElement.setAttribute("checked", true);
-        
-        return findedElement.value;
+        findedElement.checked = true; 
+
+        this.value = findedElement.value;
     }
 }
 
@@ -242,7 +242,6 @@ class Button {
     }
 
     handleClick(event) {
-        console.log("toto");
         const clickCallback = this.clickCallback;
 
         if (clickCallback) {
